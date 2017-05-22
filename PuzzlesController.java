@@ -15,7 +15,7 @@ class PuzzlesController {
 
         this.theModel.addCurrentScoresUpdateListener(() -> {
             int value = theModel.getCurrentLevelScores();
-            theView.updateTimerLabel(value);
+            theView.updateRewardLabel(value);
         });
         this.theModel.addTotalScoresUpdateListener(() -> {
             int value = theModel.getTotalScores();

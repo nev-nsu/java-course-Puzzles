@@ -2,13 +2,14 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
+import static java.lang.ClassLoader.getSystemClassLoader;
 
 interface CellUpdateListener {
     void cellIsUpdated(int X, int Y);
@@ -27,7 +28,7 @@ class PuzzlesModel {
     private final List<ValueUpdateListener> currentScoresUpdateListeners = new ArrayList<>();
     private final List<ValueUpdateListener> fieldSizeUpdateListeners = new ArrayList<>();
     private final List<ValueUpdateListener> winListeners = new ArrayList<>();
-    private final String filename = "resources/";
+    private final String filename = "";
     private final int count_of_pictures = 9;
     private final int usingPictures = 6;
     private final int image_size = 200;
@@ -40,9 +41,13 @@ class PuzzlesModel {
 
     PuzzlesModel() throws IOException {
         for (int i = 0; i < count_of_pictures; i++) {
-            File file = new File(filename + i + ".jpg");
-            FileInputStream in = new FileInputStream(file);
-            images.add(ImageIO.read(in));
+            InputStream in = getSystemClassLoader().getResourceAsStream(filename + i + ".jpg");
+            BufferedImage image = ImageIO.read(in);
+            BufferedImage newImage = new BufferedImage(image_size, image_size, BufferedImage.TYPE_INT_RGB);
+            Graphics g = newImage.createGraphics();
+            g.drawImage(image, 0, 0, image_size, image_size, null);
+            g.dispose();
+            images.add(newImage);
         }
     }
 
@@ -71,11 +76,7 @@ class PuzzlesModel {
                 marks.add(j < numbers_of_one);
             Collections.shuffle(marks);
 
-            BufferedImage newImage = new BufferedImage(image_size, image_size, BufferedImage.TYPE_INT_RGB);
-            Graphics g = newImage.createGraphics();
-            g.drawImage(images.get(i), 0, 0, image_size, image_size, null);
-            g.dispose();
-
+            BufferedImage newImage = images.get(i);
             int chunkWidth = newImage.getWidth() / width;
             int chunkHeight = newImage.getHeight() / height;
             for (int x = 0; x < height; x++) {

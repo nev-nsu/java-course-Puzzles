@@ -12,7 +12,7 @@ class PuzzlesView extends JFrame {
     private JPanel StartGamePanel;
     private JPanel ScoresPanel;
     private JLabel ScoresLabel;
-    private JLabel TimerLabel;
+    private JLabel RewardLabel;
     private JLabel winMark;
 
     PuzzlesView() {
@@ -20,6 +20,8 @@ class PuzzlesView extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(200, 300);
         setLocation(300, 200);
+        setResizable(false);
+        setTitle("Puzzles");
         setVisible(true);
     }
 
@@ -43,8 +45,8 @@ class PuzzlesView extends JFrame {
         ScoresLabel.setText(Integer.toString(newValue));
     }
 
-    void updateTimerLabel(Integer newValue) {
-        TimerLabel.setText(newValue.toString());
+    void updateRewardLabel(Integer newValue) {
+        RewardLabel.setText(newValue.toString());
     }
 
     int getSizeValue() {

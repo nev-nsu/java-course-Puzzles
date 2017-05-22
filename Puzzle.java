@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 class Puzzle {
 
-    private final ArrayList<ImageIcon> images = new ArrayList<>();
+    private final ArrayList<ImageIcon> images = new ArrayList<>(4);
     private int currentState;
     private int rightState;
 

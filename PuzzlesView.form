@@ -29,7 +29,7 @@
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Timer:"/>
+              <text value="Reward:"/>
             </properties>
           </component>
           <component id="ad612" class="javax.swing.JLabel" binding="ScoresLabel">
@@ -40,7 +40,7 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="ea45b" class="javax.swing.JLabel" binding="TimerLabel">
+          <component id="ea45b" class="javax.swing.JLabel" binding="RewardLabel">
             <constraints>
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
